@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http:/www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books</title>
+    <meta name="viewport"content="width=device-width,initial-scale=1">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <title>Books</title>
+</head>
+<body>
+
+<div th:insert="fragment/header :: header"></div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <form action="#" th:action="@{/save-update/{id}(id=${book.id})}" th:object="${book}" method="post">
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label for="name" class="col-form-label">ISBN</label>
+                        <input type="text" th:field="*{isbn}" class="form-control" id="isbn">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="name" class="col-form-label">Book Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" id="name">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="name" class="col-form-label">Book Description</label>
+                        <input type="text" th:field="*{description}" class="form-control" id="description">
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="categories" class="col-form-label">Category</label>
+                        <select th:field="*{categories}" class="form-control">
+                            <option th:each="category: ${categories}" th:value="${category.id}"
+                                    th:text="${category.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="authors" class="col-form-label">Author</label>
+                        <select th:field="*{authors}" class="form-control">
+                            <option th:each="authors: ${authors}" th:value="${authors.id}"
+                                    th:text="${authors.name}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="publishers" class="col-form-label">Publisher</label>
+                        <select th:field="*{publishers}" class="form-control">
+                            <option th:each="publisher: ${publishers}" th:value="${publisher.id}"
+                                    th:text="${publisher.name}"></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="submit" class="btn btn-primary" value="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
